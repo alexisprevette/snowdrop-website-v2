@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const config = {
         mainEvents: 5,      
         directors: 6,       
-        houstonHub: 8,      
+        houstonHub: 7,      
         austinHub: 5,
         // NEW: Config for the header background sliders
         // This assumes you have images named 'collage-about-us-1.jpg' through '4.jpg'
@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
 const houstonHubTitles = [
     "President",
     "Vice President",
-    "Treasurer",
     "Secretary",
     "Community Outreach Director",
     "Health and Safety Director",
@@ -49,49 +48,45 @@ const directorNames = [
 // Names for Houston Hub
 const houstonHubNames = [
     "Jay Mital",       // President
-    "Awais Jaffer",      // Replace with actual
-    "Treasurer Name",  // Replace with actual
-    "Secretary Name",  // Replace with actual
-    "Community Outreach Name", // Replace with actual
-    "Health & Safety Name",    // Replace with actual
-    "Marketing Name",          // Replace with actual
-    "Fundraising Name"         // Replace with actual
+    "Awais Jaffer",      // Vice President
+    "Rushil Vyas",  // Secretary
+    "Zhijun Gong", // Community Outreach Director
+    "Mason Nguyen",    // Health and Safety Director
+    "Daphne Seraphim",          // Marketing Director
+    "Joseph Le"         // Fundraising Director
 ];
 
 
     // ================= IMAGE LOADER FUNCTION =================
-    function loadImages(containerId, count, prefix, isSlider = false) {
+    function loadImages(containerId, count, prefix, isSlider = false, namesArray = [], titlesArray = []) {
         const container = document.getElementById(containerId);
-        if (!container) return; // Exit if element doesn't exist on this page
+        if (!container) return; // Exit if element doesn't exist
 
         for (let i = 1; i <= count; i++) {
             const wrapper = document.createElement('div');
-            // If it's a slider, use 'slide' class. If it's grid, use 'director-card' or 'grid-item'
-            wrapper.className = isSlider ? 'slide' : 'director-card'; 
+            wrapper.className = isSlider ? 'slide' : 'director-card';
 
             const img = document.createElement('img');
-            img.src = `images/${prefix}-${i}.jpg`; 
+            img.src = `images/${prefix}-${i}.jpg`;
             img.alt = `${prefix.replace(/-/g, ' ')} ${i}`;
-            
-            // Error handling: Hide if image missing
-            img.onerror = function() { 
-                if(isSlider) this.parentElement.style.display = 'none'; 
-                else this.src = 'images/logo-primary.png'; // Fallback for directors
+
+            // Fallback if image is missing
+            img.onerror = function() {
+                if (isSlider) this.parentElement.style.display = 'none';
+                else this.src = 'images/logo-primary.png';
             };
 
             wrapper.appendChild(img);
 
-// Special Logic for Directors and Houston Hub
-if (prefix === 'director' || prefix === 'houston-hub') {
-    const name = document.createElement('h3');
-    name.textContent = namesArray[i-1] || "Member";
+            // Add name and title for directors/Houston Hub
+            if (prefix === 'director' || prefix === 'houston-hub') {
+                const name = document.createElement('h3');
+                name.textContent = namesArray[i - 1] || "Member";
 
-    const title = document.createElement('p');
-    // Use correct titles based on prefix
-    const titlesArray = prefix === 'director' ? directorTitles : houstonHubTitles;
-    title.textContent = titlesArray[i-1] || "Member";
-    title.style.color = "#2a80a6";
-    title.style.fontWeight = "bold";
+                const title = document.createElement('p');
+                title.textContent = titlesArray[i - 1] || "Member";
+                title.style.color = "#2a80a6";
+                title.style.fontWeight = "bold";
 
     wrapper.appendChild(name);
     wrapper.appendChild(title);
