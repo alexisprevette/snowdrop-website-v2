@@ -40,9 +40,9 @@ const directorNames = [
     "Alexis Prevette", // President
     "Kishen Misra",    // Vice President
     "Quintin Fernandez",  // Treasurer
-    "Secretary Name",  // Replace with actual
-    "Director Name 1", // Replace with actual
-    "Director Name 2"  // Replace with actual
+    "James L",  // Secretary
+    "Kevin Phan", // Replace with actual
+    "Adam Vivas"  // Replace with actual
 ];
 
 // Names for Houston Hub
